@@ -1,0 +1,59 @@
+<tool id="drugCIPHER_1.1" name="drugCIPHER_1.1">
+  <description>compute drug target profile</description>
+  <command>
+  sh /home/galaxy/galaxy-dist/tools/mytools/drugCIPHER_1.1/drugCIPHER_1.1.sh $input $output_file1 $output_file2 $output_file3 2>temp2.txt 1>temp1.txt
+  </command>
+  <inputs>
+    <param format="txt" name="input" type="data" label="Chemical simlarity file"/>
+  </inputs>
+  <outputs>
+    <data format="zip" name="output_file1"/> 
+    <data format="txt" name="output_file2"/> 
+    <data format="txt" name="output_file3"/> 
+  </outputs>
+
+  <help>
+
+**What it does**
+
+drugCIHPER compute drug-gene target profile.
+
+-----
+
+**Example**
+
+Input file (Chemical similarity, the direct outcome from PubChem)::
+  
+    CID,1051 
+    3201,80
+    5253,26
+    6044,55
+
+Output file 1 (Single drug targen profile)::
+
+    EntrezID  GeneSymbol  Score	     Druggble_rank
+    79370	  BCL2L14	  0.479798	
+    8739	  HRK	      0.454775	 1
+    63970	  TP53AIP1    0.383723	
+    386672	  KRTAP10-4	  0.374371   2
+
+Output file 2 (Multiple drug targen profile)::
+
+        1051   3201      --this line is CID
+    1  	62301  20166     --this line and below is entrez ID
+    2	7832   3231
+    3	2566   3051  	
+    |
+    this is rank, ranging from 1 to 13388
+
+Output file 3 (Multiple drug targen profile, and only display druggable genes)::
+
+        1051   3201      --this line is CID
+    1  	62301  53231     --this line and below is entrez ID
+    2	902    1022
+    3	3556   55098  	
+    |
+    this is rank, ranging from 1 to 1950
+
+  </help>
+</tool>
